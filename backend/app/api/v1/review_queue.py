@@ -1,0 +1,22 @@
+from fastapi import APIRouter
+from sqlmodel import Session, select
+
+from database.connection import engine
+from database.models import ReviewQueue
+
+router = APIRouter()
+
+
+@router.get("/review-queue")
+def get_review_queue():
+
+    with Session(engine) as session:
+
+        reviews = session.exec(
+            select(ReviewQueue)
+            .where(
+                ReviewQueue.status == "PENDING"
+            )
+        ).all()
+
+        return reviews
