@@ -55,8 +55,12 @@ class InvoiceService:
             ).first()
 
             if existing_invoice:
-                print(f"Invoice already exists: {existing_invoice.id}")
-                return existing_invoice.id
+                if existing_invoice:
+
+                    return {
+                        "invoice_id": existing_invoice.id,
+                        "duplicate": True
+                    }
 
             # -------------------------
             # Create Invoice
@@ -94,4 +98,7 @@ class InvoiceService:
 
             session.commit()
 
-            return invoice.id
+            return {
+                "invoice_id": invoice.id,
+                "duplicate": False
+            }

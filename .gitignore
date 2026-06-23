@@ -11,6 +11,7 @@ __pycache__/
 
 # Uploads
 uploads/
+backend/app/uploads/
 
 # OS files
 .DS_Store

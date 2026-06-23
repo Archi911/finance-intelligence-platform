@@ -6,8 +6,7 @@ from views.review_queue import render_review_queue
 from views.exxport_data import render_export_data
 
 st.set_page_config(
-    page_title="CogniPay AI",
-    page_icon="🤖",
+    page_title="FinPilot AI",
     layout="wide"
 )
 

@@ -19,13 +19,13 @@ class LineItem(BaseModel):
 
 class InvoiceExtraction(BaseModel):
     invoice_number: Optional[str] = None
-    invoice_date: date
+    invoice_date: Optional[date] = None
     vendor_name: Optional[str] = None
     vendor_gstin: Optional[str] = None
-    subtotal: float
-    gst_amount: float
-    total_amount: float
-    line_items: List[LineItem]
+    subtotal: float = 0
+    gst_amount: float = 0
+    total_amount: float = 0
+    line_items: List[LineItem] = []
 
 
 def extract_invoice(raw_text: str):

@@ -24,3 +24,15 @@ def get_dashboard_metrics():
     )
 
     return response.json()
+
+
+def upload_invoice(file):
+
+    response = requests.post(
+        f"{BASE_URL}/ingest",
+        files={
+            "file": file
+        }
+    )
+
+    return response.json()

@@ -30,6 +30,9 @@ class InvoiceValidator:
 
         if not invoice.invoice_number:
             return False, "Missing Invoice Number"
+        
+        if not invoice.invoice_date:
+            return False, "Missing Invoice Date"
 
         if not invoice.vendor_name:
             return False, "Missing Vendor Name"

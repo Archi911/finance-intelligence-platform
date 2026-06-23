@@ -44,7 +44,10 @@ async def ingest_invoice(
     # =====================================
 
 
-    UPLOAD_DIR = "uploads"
+    UPLOAD_DIR = os.getenv(
+        "UPLOAD_DIR",
+        "uploads"
+    )
 
     os.makedirs(
         UPLOAD_DIR,
@@ -79,16 +82,23 @@ async def ingest_invoice(
             pdf_path
         )
 
+        print("\n========== OCR OUTPUT ==========")
+        print(raw_text)
+        print("================================\n")
+
     except Exception as e:
+
+        print("\n========== OCR ERROR ==========")
+        print(str(e))
+        print("================================\n")
 
         review_id = (
             ReviewService.add_to_review_queue(
                 invoice_id=None,
-                reason=reason,
-                ocr_confidence=confidence_score,
+                reason="OCR Extraction Failed",
+                ocr_confidence=0.30,
                 file_name=file.filename,
-                pdf_path=pdf_path,
-                extracted_data=invoice.model_dump()
+                pdf_path=pdf_path
             )
         )
 
@@ -96,8 +106,9 @@ async def ingest_invoice(
             "status": "review_required",
             "review_id": review_id,
             "confidence_score": 0.30,
-            "reason": "OCR Extraction Failed"
+            "reason": f"OCR Extraction Failed: {str(e)}"
         }
+
 
     # =====================================
     # EMPTY OCR OUTPUT
@@ -119,7 +130,7 @@ async def ingest_invoice(
             "status": "review_required",
             "review_id": review_id,
             "confidence_score": 0.30,
-            "reason": "OCR Extraction Failed"
+            "reason": "OCR produced empty text"
         }
 
     # =====================================
@@ -138,6 +149,10 @@ async def ingest_invoice(
         print(str(e))
         print("======================================\n")
 
+        print("\n========== RAW TEXT SENT TO LLM ==========")
+        print(raw_text)
+        print("==========================================\n")
+
         review_id = (
             ReviewService.add_to_review_queue(
                 invoice_id=None,
@@ -152,7 +167,7 @@ async def ingest_invoice(
             "status": "review_required",
             "review_id": review_id,
             "confidence_score": 0.30,
-            "reason": "AI Extraction Failed"
+            "reason": f"AI Extraction Failed: {str(e)}"
         }
 
     # =====================================
@@ -185,19 +200,48 @@ async def ingest_invoice(
 
     if is_valid:
 
-        invoice_id = (
+        save_result = (
             InvoiceService.save_invoice(
                 invoice,
                 confidence_score
             )
         )
 
+        # =====================================
+        # DUPLICATE INVOICE
+        # =====================================
+
+        if save_result["duplicate"]:
+
+            return {
+
+                "status":
+                    "duplicate",
+
+                "invoice_id":
+                    save_result["invoice_id"],
+
+                "confidence_score":
+                    confidence_score,
+
+                "invoice":
+                    invoice.model_dump(),
+
+                "message":
+                    "Invoice already exists"
+            }
+
+        # =====================================
+        # NEW INVOICE SAVED
+        # =====================================
+
         return {
 
-            "status": "approved",
+            "status":
+                "approved",
 
             "invoice_id":
-                invoice_id,
+                save_result["invoice_id"],
 
             "confidence_score":
                 confidence_score,
@@ -205,32 +249,36 @@ async def ingest_invoice(
             "invoice":
                 invoice.model_dump()
         }
+    
 
     # =====================================
     # REVIEW REQUIRED
     # =====================================
 
     review_id = (
-        ReviewService.add_to_review_queue(
-            invoice_id=None,
-            reason=reason,
-            ocr_confidence=confidence_score,
-            file_name=file.filename,
-            pdf_path=pdf_path
+            ReviewService.add_to_review_queue(
+                invoice_id=None,
+                reason=reason,
+                ocr_confidence=confidence_score,
+                file_name=file.filename,
+                pdf_path=pdf_path
+            )
         )
-    )
 
     return {
 
-        "status":
-            "review_required",
+            "status":
+                "review_required",
 
-        "review_id":
-            review_id,
+            "review_id":
+                review_id,
 
-        "confidence_score":
-            confidence_score,
+            "confidence_score":
+                confidence_score,
 
-        "reason":
-            reason
-    }
+            "reason":
+                reason
+        }
+        
+
+

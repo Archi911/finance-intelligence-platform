@@ -98,7 +98,7 @@ def render_dashboard():
     font-weight:700;
     color:#0F172A;
     ">
-    CogniPay AI
+    FinPilot AI
     </div>
 
     <div style="
