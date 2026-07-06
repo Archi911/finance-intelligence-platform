@@ -1,5 +1,5 @@
 from datetime import date
-from services.extractor import InvoiceExtraction
+from backend.app.services.extractor import InvoiceExtraction
 
 
 def get_confidence(reason: str):

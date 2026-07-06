@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from services.agents.sql_agent import SQLAgent
-from services.agents.insight_agent import InsightAgent
-from services.agents.visualization_agent import VisualizationAgent
-from services.sql_guard import SQLGuard
-from services.sql_engine import SQLEngine
+from backend.app.services.agents.sql_agent import SQLAgent
+from backend.app.services.agents.insight_agent import InsightAgent
+from backend.app.services.agents.visualization_agent import VisualizationAgent
+from backend.app.services.sql_guard import SQLGuard
+from backend.app.services.sql_engine import SQLEngine
 
 router = APIRouter()
 

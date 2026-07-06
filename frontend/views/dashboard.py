@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from services.api_client import (
+from backend.app.services.api_client import (
     ask_question,
     get_dashboard_metrics
 )

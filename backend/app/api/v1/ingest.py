@@ -7,19 +7,19 @@ import os
 from uuid import uuid4
 import tempfile
 
-from services.ocr_engine import OCREngine
-from services.extractor import extract_invoice
+from backend.app.services.ocr_engine import OCREngine
+from backend.app.services.extractor import extract_invoice
 
-from services.validator import (
+from backend.app.services.validator import (
     InvoiceValidator,
     get_confidence
 )
 
-from services.invoice_service import (
+from backend.app.services.invoice_service import (
     InvoiceService
 )
 
-from services.review_service import (
+from backend.app.services.review_service import (
     ReviewService
 )
 

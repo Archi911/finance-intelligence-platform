@@ -1,12 +1,12 @@
 from sqlmodel import Session, select
-from database.connection import engine
-from database.models import (
+from backend.app.database.connection import engine
+from backend.app.database.models import (
     Vendor,
     Invoice,
     InvoiceLineItem
 )
 
-from services.extractor import InvoiceExtraction
+from backend.app.services.extractor import InvoiceExtraction
 
 
 class InvoiceService:

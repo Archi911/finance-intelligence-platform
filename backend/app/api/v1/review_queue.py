@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from sqlmodel import Session, select
 
-from database.connection import engine
-from database.models import ReviewQueue
+from backend.app.database.connection import engine
+from backend.app.database.models import ReviewQueue
 
 router = APIRouter()
 

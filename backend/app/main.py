@@ -1,15 +1,15 @@
 from fastapi import FastAPI
 from sqlmodel import SQLModel
 
-from database.connection import engine
-import database.models
+from backend.app.database.connection import engine
+import backend.app.database.models
 
-from api.v1.analytics import router as analytics_router
-from api.v1.review_queue import router as review_router
-from api.v1.export import router as export_router
-from api.v1.review_action import router as review_actions_router
-from api.v1.ingest import router as ingest_router
-from api.v1.dashboard import router as dashboard_router
+from backend.app.api.v1.analytics import router as analytics_router
+from backend.app.api.v1.review_queue import router as review_router
+from backend.app.api.v1.export import router as export_router
+from backend.app.api.v1.review_action import router as review_actions_router
+from backend.app.api.v1.ingest import router as ingest_router
+from backend.app.api.v1.dashboard import router as dashboard_router
 
 app = FastAPI(
     title=" AI - Invoice system",

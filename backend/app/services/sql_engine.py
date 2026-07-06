@@ -1,6 +1,6 @@
 from sqlmodel import Session
 from sqlalchemy import text
-from database.connection import engine
+from backend.app.database.connection import engine
 
 
 class SQLEngine:

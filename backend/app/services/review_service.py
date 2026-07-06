@@ -1,6 +1,6 @@
 from sqlmodel import Session
-from database.connection import engine
-from database.models import ReviewQueue
+from backend.app.database.connection import engine
+from backend.app.database.models import ReviewQueue
 
 
 class ReviewService:
