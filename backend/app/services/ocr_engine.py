@@ -4,8 +4,13 @@ import cv2
 from pdf2image import convert_from_path
 from paddleocr import PaddleOCR
 
+import os
 
-POPPLER_PATH = r"C:\poppler\poppler-26.02.0\Library\bin"
+POPPLER_PATH = None
+
+if os.name == "nt":
+    POPPLER_PATH = r"C:\poppler\poppler-26.02.0\Library\bin"
+
 
 
 class OCREngine:
