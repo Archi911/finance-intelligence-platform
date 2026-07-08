@@ -3,7 +3,7 @@ import requests
 import base64
 import os
 
-BASE_URL = "http://127.0.0.1:8000/api/v1"
+from services.api_client import BASE_URL
 
 # ==========================================
 # STYLING
