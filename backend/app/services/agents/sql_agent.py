@@ -1,8 +1,9 @@
+from pathlib import Path
 from groq import Groq
 from dotenv import load_dotenv
 import os
-load_dotenv()
 
+load_dotenv()
 
 class SQLAgent:
 
@@ -11,26 +12,27 @@ class SQLAgent:
     @staticmethod
     def generate_sql(question: str):
 
-        with open(
-            "services/prompts/text_to_sql_system.txt",
-            "r",
-            encoding="utf-8"
-        ) as f:
+        PROMPT_PATH = (
+            Path(__file__).resolve().parent.parent
+            / "prompts"
+            / "text_to_sql_system.txt"
+        )
 
+        print("Prompt Path:", PROMPT_PATH)
+        print("Exists:", PROMPT_PATH.exists())
+
+        with open(PROMPT_PATH, "r", encoding="utf-8") as f:
             system_prompt = f.read()
 
         response = SQLAgent.client.chat.completions.create(
             model="llama-3.3-70b-versatile",
-            messages=[{"role": "system","content": system_prompt},{"role": "user","content": question}]
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": question},
+            ],
         )
 
-        sql = (response.choices[0].message.content)
+        sql = response.choices[0].message.content
+        sql = sql.replace("```sql", "").replace("```", "").strip()
 
-        sql = sql.replace("```sql","")
-        sql = sql.replace(
-            "```",
-            ""
-        )
-
-        sql = sql.strip()
         return sql
