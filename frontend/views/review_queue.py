@@ -10,51 +10,153 @@ from services.api_client import BASE_URL
 # ==========================================
 
 st.markdown("""
-<style>
+    <style>
 
-.block-container{
-    max-width:1400px;
-    padding-top:1rem;
-}
+    /* ===========================
+    GLOBAL APP
+    =========================== */
 
-/* Normalize KPI Metrics */
-[data-testid="stMetricValue"] > div {
-    font-size: 24px !important; 
-    font-weight: 600 !important;
-    color: #0F172A !important;
-}
+    .stApp{
+        background:#F8FAFC !important;
+    }
 
-[data-testid="stMetricLabel"] > label {
-    font-size: 13px !important;
-    color: #64748B !important;
-    margin-bottom: 2px !important;
-}
+    .block-container{
+        max-width:1400px;
+        padding-top:1rem;
+        background:#F8FAFC;
+    }
 
-/* Custom Badges */
-.risk-badge {
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-.risk-high { background: #FEE2E2; color: #991B1B; }
-.risk-medium { background: #FEF3C7; color: #92400E; }
-.risk-low { background: #DCFCE7; color: #166534; }
+    /* ===========================
+    SIDEBAR
+    =========================== */
 
-.info-box {
-    font-size:13px; 
-    padding:8px 12px; 
-    border-radius:6px; 
-    margin-bottom:12px;
-}
-.info-danger { background:#FEE2E2; color:#991B1B; border-left: 3px solid #EF4444; }
-.info-warning { background:#FEF3C7; color:#92400E; }
-.info-success { background:#DCFCE7; color:#166534; }
+    [data-testid="stSidebar"]{
+        background:white !important;
+        border-right:1px solid #E5E7EB;
+    }
 
-</style>
-""", unsafe_allow_html=True)
+    [data-testid="stSidebar"] *{
+        color:#0F172A !important;
+    }
+
+    /* ===========================
+    TEXT
+    =========================== */
+
+    h1,h2,h3,h4,h5,h6,
+    label,p,span{
+        color:#0F172A !important;
+    }
+
+    /* ===========================
+    CONTAINERS
+    =========================== */
+
+    [data-testid="stVerticalBlockBorderWrapper"]{
+        background:white !important;
+        border:1px solid #E5E7EB !important;
+        border-radius:14px;
+    }
+
+    /* ===========================
+    BUTTONS
+    =========================== */
+
+    .stButton>button{
+        background:white !important;
+        color:#0F172A !important;
+        border:1px solid #CBD5E1 !important;
+    }
+
+    .stButton>button:hover{
+        border-color:#2563EB !important;
+    }
+
+    /* Primary buttons */
+
+    button[kind="primary"]{
+        background:#2563EB !important;
+        color:white !important;
+    }
+
+    /* ===========================
+    INPUTS
+    =========================== */
+
+    .stTextInput input,
+    .stSelectbox div[data-baseweb="select"],
+    .stTextArea textarea{
+        background:white !important;
+        color:#0F172A !important;
+    }
+
+    /* ===========================
+    FILE UPLOADER
+    =========================== */
+
+    [data-testid="stFileUploader"]{
+        background:white !important;
+        border:1px solid #CBD5E1 !important;
+        border-radius:12px;
+    }
+
+    /* ===========================
+    METRICS
+    =========================== */
+
+    [data-testid="stMetricValue"]{
+        color:#0F172A !important;
+    }
+
+    [data-testid="stMetricLabel"]{
+        color:#64748B !important;
+    }
+
+    /* ===========================
+    PROGRESS
+    =========================== */
+
+    [data-testid="stProgressBar"]{
+        background:#E5E7EB;
+    }
+
+    /* ===========================
+    EXPANDER
+    =========================== */
+
+    .streamlit-expanderHeader{
+        color:#0F172A !important;
+    }
+
+    /* ===========================
+    DATAFRAME
+    =========================== */
+
+    [data-testid="stDataFrame"]{
+        background:white !important;
+    }
+
+    /* ===========================
+    ALERTS
+    =========================== */
+
+    .info-danger{
+        background:#FEE2E2;
+        color:#991B1B;
+    }
+
+    .info-warning{
+        background:#FEF3C7;
+        color:#92400E;
+    }
+
+    .info-success{
+        background:#DCFCE7;
+        color:#166534;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
 
 # ==========================================
 # PDF VIEWER

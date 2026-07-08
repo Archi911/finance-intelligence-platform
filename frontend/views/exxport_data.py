@@ -7,22 +7,71 @@ from services.api_client import BASE_URL
 # ==========================================
 # STYLING
 # ==========================================
-
 st.markdown("""
 <style>
+
+/* ---------- APP ---------- */
+
+.stApp{
+    background:#F8FAFC !important;
+}
 
 .block-container{
     max-width:1200px;
     padding-top:1rem;
+    background:#F8FAFC;
 }
 
-.info-box {
-    font-size:13px; 
-    padding:8px 12px; 
-    border-radius:6px; 
+/* ---------- SIDEBAR ---------- */
+
+[data-testid="stSidebar"]{
+    background:white !important;
+    border-right:1px solid #E5E7EB;
+}
+
+/* ---------- TEXT ---------- */
+
+h1,h2,h3,h4,h5,h6,
+p,span,label{
+    color:#0F172A !important;
+}
+
+/* ---------- CONTAINERS ---------- */
+
+[data-testid="stVerticalBlockBorderWrapper"]{
+    background:white !important;
+    border:1px solid #E5E7EB !important;
+    border-radius:12px;
+}
+
+/* ---------- BUTTONS ---------- */
+
+.stButton>button{
+    background:white !important;
+    color:#0F172A !important;
+    border:1px solid #CBD5E1 !important;
+}
+
+.stDownloadButton>button{
+    background:#2563EB !important;
+    color:white !important;
+    border:none !important;
+}
+
+/* ---------- SUCCESS BOX ---------- */
+
+.info-box{
+    font-size:13px;
+    padding:8px 12px;
+    border-radius:6px;
     margin-bottom:12px;
 }
-.info-success { background:#DCFCE7; color:#166534; border-left: 3px solid #22C55E; }
+
+.info-success{
+    background:#DCFCE7;
+    color:#166534;
+    border-left:3px solid #22C55E;
+}
 
 </style>
 """, unsafe_allow_html=True)
@@ -34,15 +83,30 @@ def render_export_data():
     # ======================================================
 
     st.markdown("""
-    <div style="padding-bottom:18px; border-bottom:1px solid #E5E7EB; margin-bottom:25px;">
-        <div style="font-size:34px; font-weight:700; color:#0F172A;">
-            Data Export Center
+        <div style="
+        padding-bottom:18px;
+        border-bottom:1px solid #E5E7EB;
+        margin-bottom:25px;
+        ">
+
+        <div style="
+        font-size:34px;
+        font-weight:700;
+        color:#0F172A;
+        ">
+        Data Export Center
         </div>
-        <div style="font-size:14px; color:#64748B; margin-top:4px;">
-            Download consolidated invoice records for ERP integration
+
+        <div style="
+        font-size:14px;
+        color:#64748B;
+        margin-top:4px;
+        ">
+        Download consolidated invoice records for ERP integration
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+
+        </div>
+        """, unsafe_allow_html=True)
 
     # ======================================================
     # EXPORT CARD
@@ -87,7 +151,7 @@ def render_export_data():
                 st.download_button(
                     label="Download CSV",
                     data=st.session_state["export_csv"],
-                    file_name="cognipay_all_invoices.csv",
+                    file_name="finPilot_all_invoices.csv",
                     mime="text/csv",
                     type="primary", # Makes the button blue/accent color
                     use_container_width=True

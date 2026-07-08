@@ -13,14 +13,50 @@ from services.api_client import (
 st.markdown("""
 <style>
 
+/* ---------- APP BACKGROUND ---------- */
+
+.stApp{
+    background:#F8FAFC !important;
+}
+
+/* ---------- MAIN CONTAINER ---------- */
+
 .block-container{
     max-width:1100px;
     padding-top:0.5rem;
-}
-
-body{
     background:#F8FAFC;
 }
+
+/* ---------- STREAMLIT TEXT ---------- */
+
+html, body,
+[data-testid="stAppViewContainer"],
+[data-testid="stHeader"],
+[data-testid="stSidebar"]{
+    background:#F8FAFC !important;
+    color:#0F172A !important;
+}
+
+/* ---------- HEADINGS ---------- */
+
+h1,h2,h3,h4,h5,h6{
+    color:#0F172A !important;
+}
+
+/* ---------- PARAGRAPHS ---------- */
+
+p, span, label, div{
+    color:#0F172A;
+}
+
+/* ---------- SIDEBAR ---------- */
+
+[data-testid="stSidebar"]{
+    background:white !important;
+    border-right:1px solid #E5E7EB;
+}
+
+/* ---------- CARDS ---------- */
 
 .header-card{
     background:white;
@@ -38,12 +74,12 @@ body{
 }
 
 .metric-label{
-    color:#64748B;
+    color:#64748B !important;
     font-size:13px;
 }
 
 .metric-value{
-    color:#0F172A;
+    color:#0F172A !important;
     font-size:18px;
     font-weight:600;
 }
@@ -58,12 +94,30 @@ body{
 .section-title{
     font-size:18px;
     font-weight:600;
-    color:#0F172A;
+    color:#0F172A !important;
 }
 
 .small-muted{
-    color:#64748B;
+    color:#64748B !important;
     font-size:14px;
+}
+
+/* ---------- CHAT INPUT ---------- */
+
+[data-testid="stChatInput"]{
+    background:white !important;
+}
+
+textarea{
+    color:#0F172A !important;
+}
+
+/* ---------- BUTTON ---------- */
+
+.stButton>button{
+    background:white;
+    color:#0F172A;
+    border:1px solid #E5E7EB;
 }
 
 </style>
@@ -87,30 +141,30 @@ def render_dashboard():
     # ==========================================
 
     st.markdown("""
-    <div style="
-    padding-bottom:18px;
-    border-bottom:1px solid #E5E7EB;
-    margin-bottom:25px;
-    ">
+        <div style="
+        padding-bottom:18px;
+        border-bottom:1px solid #E5E7EB;
+        margin-bottom:25px;
+        ">
 
-    <div style="
-    font-size:34px;
-    font-weight:700;
-    color:#0F172A;
-    ">
-    FinPilot AI
-    </div>
+        <div style="
+        font-size:34px;
+        font-weight:700;
+        color:#0F172A;
+        ">
+        FinPilot AI
+        </div>
 
-    <div style="
-    font-size:14px;
-    color:#64748B;
-    margin-top:5px;
-    ">
-    Accounts Payable Intelligence Platform
-    </div>
+        <div style="
+        font-size:14px;
+        color:#64748B;
+        margin-top:5px;
+        ">
+        Accounts Payable Intelligence Platform
+        </div>
 
-    </div>
-    """, unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
 
     # ==========================================
     # SIDEBAR

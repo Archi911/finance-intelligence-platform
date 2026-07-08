@@ -9,98 +9,153 @@ from services.api_client import BASE_URL
 # ======================================================
 
 st.markdown("""
-<style>
+    <style>
 
-.block-container{
-    max-width:1200px;
-    padding-top:0.75rem;
-}
+    /*===========================
+    GLOBAL APP
+    =========================== */
 
-.invoice-card{
-    background:white;
-    border:1px solid #E5E7EB;
-    border-radius:12px;
-    overflow:hidden;
-    margin-bottom:24px;
-}
+    .stApp{
+        background:#F8FAFC !important;
+    }
 
-.invoice-header{
-    padding:18px 22px;
-    border-bottom:1px solid #E5E7EB;
-}
+    .block-container{
+        max-width:1400px;
+        padding-top:1rem;
+        background:#F8FAFC;
+    }
 
-/* Custom HTML Metric Styling - Normalized Size */
-.metric-label{
-    font-size:12px;
-    color:#64748B;
-    margin-bottom:2px;
-}
+    /* ===========================
+    SIDEBAR
+    =========================== */
 
-.metric-value{
-    font-size:14px; /* Changed from 18px to match standard text */
-    font-weight:600;
-    color:#0F172A;
-}
+    [data-testid="stSidebar"]{
+        background:white !important;
+        border-right:1px solid #E5E7EB;
+    }
 
-/* Override Streamlit's Native Metrics to match the custom ones */
-[data-testid="stMetricValue"] > div {
-    font-size: 14px !important; 
-    font-weight: 600 !important;
-    color: #0F172A !important;
-}
+    [data-testid="stSidebar"] *{
+        color:#0F172A !important;
+    }
 
-[data-testid="stMetricLabel"] > label {
-    font-size: 12px !important;
-    color: #64748B !important;
-    margin-bottom: 2px !important;
-}
+    /* ===========================
+    TEXT
+    =========================== */
 
-/* Tighten the spacing between columns to bring metrics closer */
-[data-testid="stHorizontalBlock"] {
-    gap: 1rem !important; 
-}
-[data-testid="column"] {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-}
+    h1,h2,h3,h4,h5,h6,
+    label,p,span{
+        color:#0F172A !important;
+    }
 
-.status-approved{
-    background:#DCFCE7;
-    color:#166534;
-    padding:6px 12px;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:600;
-}
+    /* ===========================
+    CONTAINERS
+    =========================== */
 
-.status-review{
-    background:#FEF3C7;
-    color:#92400E;
-    padding:6px 12px;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:600;
-}
+    [data-testid="stVerticalBlockBorderWrapper"]{
+        background:white !important;
+        border:1px solid #E5E7EB !important;
+        border-radius:14px;
+    }
 
-.status-rejected{
-    background:#FEE2E2;
-    color:#991B1B;
-    padding:6px 12px;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:600;
-}
+    /* ===========================
+    BUTTONS
+    =========================== */
 
-.section-title{
-    font-size:15px;
-    font-weight:600;
-    color:#0F172A;
-    margin-bottom: 8px;
-}
+    .stButton>button{
+        background:white !important;
+        color:#0F172A !important;
+        border:1px solid #CBD5E1 !important;
+    }
 
-</style>
-""", unsafe_allow_html=True)
-st.error("NEW VERSION LOADED")
+    .stButton>button:hover{
+        border-color:#2563EB !important;
+    }
+
+    /* Primary buttons */
+
+    button[kind="primary"]{
+        background:#2563EB !important;
+        color:white !important;
+    }
+
+    /* ===========================
+    INPUTS
+    =========================== */
+
+    .stTextInput input,
+    .stSelectbox div[data-baseweb="select"],
+    .stTextArea textarea{
+        background:white !important;
+        color:#0F172A !important;
+    }
+
+    /* ===========================
+    FILE UPLOADER
+    =========================== */
+
+    [data-testid="stFileUploader"]{
+        background:white !important;
+        border:1px solid #CBD5E1 !important;
+        border-radius:12px;
+    }
+
+    /* ===========================
+    METRICS
+    =========================== */
+
+    [data-testid="stMetricValue"]{
+        color:#0F172A !important;
+    }
+
+    [data-testid="stMetricLabel"]{
+        color:#64748B !important;
+    }
+
+    /* ===========================
+    PROGRESS
+    =========================== */
+
+    [data-testid="stProgressBar"]{
+        background:#E5E7EB;
+    }
+
+    /* ===========================
+    EXPANDER
+    =========================== */
+
+    .streamlit-expanderHeader{
+        color:#0F172A !important;
+    }
+
+    /* ===========================
+    DATAFRAME
+    =========================== */
+
+    [data-testid="stDataFrame"]{
+        background:white !important;
+    }
+
+    /* ===========================
+    ALERTS
+    =========================== */
+
+    .info-danger{
+        background:#FEE2E2;
+        color:#991B1B;
+    }
+
+    .info-warning{
+        background:#FEF3C7;
+        color:#92400E;
+    }
+
+    .info-success{
+        background:#DCFCE7;
+        color:#166534;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
 
 def render_upload_invoice():
 
