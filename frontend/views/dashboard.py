@@ -11,117 +11,153 @@ from services.api_client import (
 # ======================================================
 
 st.markdown("""
-<style>
+    <style>
 
-/* ---------- APP BACKGROUND ---------- */
+    /*===========================
+    GLOBAL APP
+    =========================== */
 
-.stApp{
-    background:#F8FAFC !important;
-}
+    .stApp{
+        background:#F8FAFC !important;
+    }
 
-/* ---------- MAIN CONTAINER ---------- */
+    .block-container{
+        max-width:1400px;
+        padding-top:1rem;
+        background:#F8FAFC;
+    }
 
-.block-container{
-    max-width:1100px;
-    padding-top:0.5rem;
-    background:#F8FAFC;
-}
+    /* ===========================
+    SIDEBAR
+    =========================== */
 
-/* ---------- STREAMLIT TEXT ---------- */
+    [data-testid="stSidebar"]{
+        background:white !important;
+        border-right:1px solid #E5E7EB;
+    }
 
-html, body,
-[data-testid="stAppViewContainer"],
-[data-testid="stHeader"],
-[data-testid="stSidebar"]{
-    background:#F8FAFC !important;
-    color:#0F172A !important;
-}
+    [data-testid="stSidebar"] *{
+        color:#0F172A !important;
+    }
 
-/* ---------- HEADINGS ---------- */
+    /* ===========================
+    TEXT
+    =========================== */
 
-h1,h2,h3,h4,h5,h6{
-    color:#0F172A !important;
-}
+    h1,h2,h3,h4,h5,h6,
+    label,p,span{
+        color:#0F172A !important;
+    }
 
-/* ---------- PARAGRAPHS ---------- */
+    /* ===========================
+    CONTAINERS
+    =========================== */
 
-p, span, label, div{
-    color:#0F172A;
-}
+    [data-testid="stVerticalBlockBorderWrapper"]{
+        background:white !important;
+        border:1px solid #E5E7EB !important;
+        border-radius:14px;
+    }
 
-/* ---------- SIDEBAR ---------- */
+    /* ===========================
+    BUTTONS
+    =========================== */
 
-[data-testid="stSidebar"]{
-    background:white !important;
-    border-right:1px solid #E5E7EB;
-}
+    .stButton>button{
+        background:white !important;
+        color:#0F172A !important;
+        border:1px solid #CBD5E1 !important;
+    }
 
-/* ---------- CARDS ---------- */
+    .stButton>button:hover{
+        border-color:#2563EB !important;
+    }
 
-.header-card{
-    background:white;
-    border:1px solid #E5E7EB;
-    border-radius:16px;
-    padding:24px;
-    margin-bottom:20px;
-}
+    /* Primary buttons */
 
-.metric-card{
-    background:white;
-    border:1px solid #E5E7EB;
-    border-radius:12px;
-    padding:14px;
-}
+    button[kind="primary"]{
+        background:#2563EB !important;
+        color:white !important;
+    }
 
-.metric-label{
-    color:#64748B !important;
-    font-size:13px;
-}
+    /* ===========================
+    INPUTS
+    =========================== */
 
-.metric-value{
-    color:#0F172A !important;
-    font-size:18px;
-    font-weight:600;
-}
+    .stTextInput input,
+    .stSelectbox div[data-baseweb="select"],
+    .stTextArea textarea{
+        background:white !important;
+        color:#0F172A !important;
+    }
 
-.copilot-card{
-    background:white;
-    border:1px solid #E5E7EB;
-    border-radius:16px;
-    padding:20px;
-}
+    /* ===========================
+    FILE UPLOADER
+    =========================== */
 
-.section-title{
-    font-size:18px;
-    font-weight:600;
-    color:#0F172A !important;
-}
+    [data-testid="stFileUploader"]{
+        background:white !important;
+        border:1px solid #CBD5E1 !important;
+        border-radius:12px;
+    }
 
-.small-muted{
-    color:#64748B !important;
-    font-size:14px;
-}
+    /* ===========================
+    METRICS
+    =========================== */
 
-/* ---------- CHAT INPUT ---------- */
+    [data-testid="stMetricValue"]{
+        color:#0F172A !important;
+    }
 
-[data-testid="stChatInput"]{
-    background:white !important;
-}
+    [data-testid="stMetricLabel"]{
+        color:#64748B !important;
+    }
 
-textarea{
-    color:#0F172A !important;
-}
+    /* ===========================
+    PROGRESS
+    =========================== */
 
-/* ---------- BUTTON ---------- */
+    [data-testid="stProgressBar"]{
+        background:#E5E7EB;
+    }
 
-.stButton>button{
-    background:white;
-    color:#0F172A;
-    border:1px solid #E5E7EB;
-}
+    /* ===========================
+    EXPANDER
+    =========================== */
 
-</style>
-""", unsafe_allow_html=True)
+    .streamlit-expanderHeader{
+        color:#0F172A !important;
+    }
+
+    /* ===========================
+    DATAFRAME
+    =========================== */
+
+    [data-testid="stDataFrame"]{
+        background:white !important;
+    }
+
+    /* ===========================
+    ALERTS
+    =========================== */
+
+    .info-danger{
+        background:#FEE2E2;
+        color:#991B1B;
+    }
+
+    .info-warning{
+        background:#FEF3C7;
+        color:#92400E;
+    }
+
+    .info-success{
+        background:#DCFCE7;
+        color:#166534;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
 
 
 def metric_card(title, value):
@@ -141,31 +177,15 @@ def render_dashboard():
     # ==========================================
 
     st.markdown("""
-        <div style="
-        padding-bottom:18px;
-        border-bottom:1px solid #E5E7EB;
-        margin-bottom:25px;
-        ">
-
-        <div style="
-        font-size:34px;
-        font-weight:700;
-        color:#0F172A;
-        ">
+<div style="padding-bottom:18px; border-bottom:1px solid #E5E7EB; margin-bottom:25px;">
+    <div style="font-size:34px; font-weight:700; color:#0F172A;">
         FinPilot AI
-        </div>
-
-        <div style="
-        font-size:14px;
-        color:#64748B;
-        margin-top:5px;
-        ">
-        Accounts Payable Intelligence Platform
-        </div>
-
-        </div>
-        """, unsafe_allow_html=True)
-
+    </div>
+    <div style="font-size:14px; color:#64748B; margin-top:4px;">
+        Invoice Intelligence Platform
+    </div>
+</div>
+""", unsafe_allow_html=True)
     # ==========================================
     # SIDEBAR
     # ==========================================
@@ -237,12 +257,14 @@ def render_dashboard():
 
     st.markdown("""
     <div style="
-    font-size:18px;
+    font-size:20px;
     font-weight:600;
     color:#0F172A;
-    margin-bottom:4px;
+    margin-bottom:6px;
     ">
+
     Finance Analytics Copilot
+
     </div>
 
     <div style="
@@ -250,7 +272,9 @@ def render_dashboard():
     color:#64748B;
     margin-bottom:20px;
     ">
+
     Query invoices, vendors, GST, spending trends and financial operations.
+
     </div>
     """, unsafe_allow_html=True)
 
